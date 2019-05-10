@@ -1,68 +1,59 @@
 
-const c = document.getElementById('c');
-const f = document.getElementById('f');
-const clearBtn = document.getElementById('clearBtn');
-const convertBtn = document.getElementById('convertBtn');
-const tempInput = document.getElementById('tempInput');
-let value =0;
+const toCelsius = (temp) => {
+ const celsius = (temp-32) * (5/9)
+ domStringbulider(celsius, 'c')
+}
 
-const printToDom = (divId, textToPrint) => {
-    document.getElementById(divId).innerHTML = textToPrint;
+const toFahrenheit = (temp) => {
+ const fahrenheit =  (temp * (9/5) + 32)
+ domStringbulider(fahrenheit, 'f')
+}
+
+const domStringbulider = (temp, unit) => {
+ let domString = ''
+ if ((unit === 'f' && temp > 90) || (unit === 'c' && temp > 32)) {
+    tempClass = 'red';
+  } else if ((unit === 'f' && temp < 32) || (unit === 'c' && temp < 0)) {
+    tempClass = 'blue';
+  } else {
+    tempClass = 'green';
+  }
+ domString += `<div class=${tempClass}>${temp}</div>`
+ printToDom('tempoutput', domString)
+}
+
+
+// Get a reference to the button element in the DOM
+const button = document.getElementById("converter");
+
+// This function should determine which conversion should
+// happen based on which radio button is selected.
+const determineConverter = (e) => {
+  const input = document.getElementById("tempinput")
+  if (document.getElementById("celsius").checked) {
+      toCelsius(input.value)
+  } else {
+      toFahrenheit(input.value)
+  }
+}
+
+const clear = () => {
+    document.getElementById("tempinput").value = ''
+    printToDom('tempoutput', '')
+}
+
+// Assign a function to be executed when the button is clicked
+const eventlistners = () => {
+    document.getElementById("convert-button").addEventListener("click", determineConverter)
+    document.getElementById("clear-button").addEventListener("click", clear)
+}
+
+const printToDom = (divId, textToPrint) =>{
+    const selecteddiv = document.getElementById(divId)
+    selecteddiv.innerHTML = textToPrint
+ };
+
+const init = () => {
+    eventlistners()
 };
-
-const toCelsius = () => {
-    value = (document.getElementById('tempInput').value - 32)*(5/9);
-    
-    let color = 'green';
-    if(value>32){
-        color = 'red';
-    }
-    else if (value<0){
-        color = 'blue';
-    }
-    document.getElementById('divOutput').style.color = color;
-    domStringBuilder = `<h2>${value} degrees C</h2>`
-    
-};
-
-const toFahrenheit = () => {
-    value = (document.getElementById('tempInput').value * (9/5))+32;
-
-    let color = 'green';
-    if(value>90){
-        color = 'red';
-    }
-    else if (value<32){
-        color = 'blue';
-    }
-    document.getElementById('divOutput').style.color = color;
-    domStringBuilder = `<h2>${value} degrees C</h2>`
-
-};
-
-const determineConverter = () => {
-    if(c.checked){
-        toCelsius();
-        printToDom('divOutput', domStringBuilder);
-    }
-    else{
-        toFahrenheit();
-        printToDom('divOutput', domStringBuilder);
-    }
-};
-
-const clearTempInput = () => {
-    document.getElementById('tempInput').value = '';
-    document.getElementById('divOutput').textContent = '';
-    c.checked = false;
-    f.checked=false;
-};
-
-convertBtn.addEventListener("click", determineConverter);
-clearBtn.addEventListener("click", clearTempInput);
-
-tempInput.addEventListener("keyup", function(event){
-    if (event.keyCode === 13){
-        document.getElementById('convertBtn').click();
-    }
-});
+init ();
