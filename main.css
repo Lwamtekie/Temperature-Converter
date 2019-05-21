@@ -1,11 +1,85 @@
 .red {
    color: red;
+   margin-top: 3rem;
+   font-size: 2rem
 }
 
 .blue {
    color: blue;
+   margin-top: 3rem;
+   font-size:2rem;
 }
 
 .green {
    color: green;
+   margin-top: 3rem;
+   font-size:2rem;
 }
+
+body{
+   background-color: darkkhaki;
+   align-content: center;
+   text-align: center;
+   font-size: 1.5rem;
+   
+};
+
+.container{
+   
+   width: 300px;
+  height: 300px;
+  display: flex;
+  text-align: center;
+  flex-wrap: nowrap;
+  flex-grow: 0;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+  border-style: solid;
+  margin-top: 2rem;
+  padding:6rem;
+  justify-content: center;
+  }
+
+#convert-button{
+ 
+ font-size: x-large;
+ background-color: brown; 
+ margin-top: 2rem;
+ border: double;
+ border:solid black;
+ 
+}
+#clear-button{
+  font-size: x-large;
+  margin-top: 2rem;
+  border:double;
+  border:solid black;
+ }
+#tempinput{
+   font-size: 20px;
+   margin-top: 4rem;
+   border:solid black;
+   border: double;
+};   
+
+
+#tempoutput{
+   font-size: 2rem;
+   margin-top: 3rem;
+
+
+}
+.card{
+   background-color: bisque;
+   margin: 15px;
+   border: 1px solid BLACK;
+   box-shadow: 1px 2px 2px 1px;
+   width: 300px;
+   height: 300px;
+   padding: 0px;
+   -webkit-flex-flow: row wrap;
+   margin-top: 4rem;
+   margin: 0 auto;
+}
+
+   
